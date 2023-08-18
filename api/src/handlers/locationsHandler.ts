@@ -1,9 +1,12 @@
 import { Request,Response } from "express";
 // import { ErrorRequestHandler } from "express";
+import { getAllLocationsApi } from "../controllers/locations/02 - getAllLocationsApi";
 
-export const getLocations = (req:Request,res:Response) => {
+export const getLocations = async (_req:Request,res:Response) => {
   try {
-    return res.status(200).json({DIY:'All Locations'})
+    const locations = await getAllLocationsApi();
+    // return res.status(200).json({DIY:'All Locations'})
+    return res.status(200).json(locations)
   } catch (error:any) {
     return res.status(404).json({error: error.message});
   }
