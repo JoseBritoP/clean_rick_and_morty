@@ -13,12 +13,14 @@ export default (sequelize:Sequelize) =>{
       defaultValue:'unknown'
     },
     type:{
-      type:DataTypes.STRING(25),
+      type:DataTypes.STRING(50),
       allowNull:false,
     },
     dimension:{
       type:DataTypes.STRING(50),
       allowNull:false,
     }
+  },{
+    timestamps:false,
   });
 };

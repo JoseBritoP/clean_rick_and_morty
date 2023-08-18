@@ -20,5 +20,7 @@ export default (sequelize:Sequelize) =>{
       type:DataTypes.STRING(25),
       allowNull:false,
     }
+  },{
+    timestamps:false
   });
 };
