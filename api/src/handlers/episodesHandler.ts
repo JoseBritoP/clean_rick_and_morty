@@ -1,9 +1,11 @@
 import { Request,Response } from "express";
 // import { ErrorRequestHandler } from "express";
+import { getAllEpisodesApi } from "../controllers/episodes/02 - getAllEpisodesApi";
 
-export const getEpisodes = (req:Request,res:Response) => {
+export const getEpisodes = async (_req:Request,res:Response) => {
   try {
-    return res.status(200).json({DIY:'All episodes'})
+    const episodes = await getAllEpisodesApi();
+    return res.status(200).json(episodes)
   } catch (error:any) {
     return res.status(404).json({error: error.message});
   }
