@@ -27,10 +27,6 @@ export default (sequelize:Sequelize) =>{
       type: DataTypes.ENUM("Male","Female"),
       allowNull:false
     },
-    origin:{
-      type: DataTypes.JSONB() ,
-      allowNull:false
-    },
     type:{
       type:DataTypes.STRING(),
       defaultValue:'',
