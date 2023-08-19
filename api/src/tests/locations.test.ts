@@ -60,7 +60,17 @@ describe('GET /location/:id',()=>{
       });
     });
   });
-  describe('Error case',()=>{});
+  describe('Error case',()=>{
+    const id = 1000
+    test('should respond with a 404 status code', async ()=>{
+      const response = await request(server).get(`/location/${id}`);
+      expect(response.status).toBe(404);
+    });
+    test(`should response with a message error like: 'Don't exist the location id: ${id}`,async()=>{
+      const response = await request(server).get(`/location/${id}`);
+      expect(response.body.error).toBe(`Don't exist the location id: ${id}`);
+    });
+  });
 });
 
 xdescribe('POST /Location',()=>{
