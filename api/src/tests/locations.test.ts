@@ -2,7 +2,7 @@ import { server } from '../index';
 import request from 'supertest';
 import { LocationInterface, LocationType } from '../interfaces/location';
 
-xdescribe('/GET Location',()=>{
+xdescribe('GET /Location',()=>{
   describe('Success case',()=>{
     test('should respond with a 200 status code',async()=>{
       const response: request.Response = await request(server).get('/location');
@@ -32,7 +32,38 @@ xdescribe('/GET Location',()=>{
   });
 });
 
-xdescribe('/POST Location',()=>{
+describe('GET /location/:id',()=>{
+  describe('Success case',()=>{
+    test('should respond with a 200 status code',async()=>{
+      const response = await request(server).get('/location/1').send();
+      expect(response.status).toEqual(200);
+      expect(response.ok).toBeTruthy();
+    });
+    test('should respond with an object with an object',async()=>{
+      const response = await request(server).get('/location/1').send();
+      expect(response.body).toBeInstanceOf(Object);
+      expect(response.body).toMatchObject<LocationInterface>({
+        id: expect.any(Number),
+        name: expect.any(String),
+        type: expect.any(String),
+        dimension: expect.any(String),
+      });
+    });
+    test('should respond with an object instance of Location',async()=>{
+      const response = await request(server).get('/location/1').send();
+      expect(response.body).toBeInstanceOf(Object);
+      expect(response.body).toMatchObject<LocationInterface>({
+        id: expect.any(Number),
+        name: expect.any(String),
+        type: expect.any(String),
+        dimension: expect.any(String),
+      });
+    });
+  });
+  describe('Error case',()=>{});
+});
+
+xdescribe('POST /Location',()=>{
   describe('Success case',()=>{
     test('should respond with a 201 status code',async()=>{
       const newLocationTest = {
