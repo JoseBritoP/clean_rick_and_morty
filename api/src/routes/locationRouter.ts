@@ -8,12 +8,12 @@ import { getLocations,getLocation, postLocation,updateLocation,deleteLocation } 
 
 //Middlewares:
 
-// 
+import { postValidate } from '../middleware/location/postValidate';
 
 // Enrutado
 
 locationRouter.get('/',getLocations);
 locationRouter.get('/:id',getLocation);
-locationRouter.post('/',postLocation);
+locationRouter.post('/',postValidate,postLocation);
 locationRouter.patch('/:id',updateLocation);
 locationRouter.delete('/:id',deleteLocation);

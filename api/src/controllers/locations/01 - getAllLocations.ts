@@ -6,7 +6,6 @@ export const savingLocationsBDD = async () => {
     
   const creationPromises = locationsApi.map((location) => Location.findOrCreate({
     where: {
-      id: location.id,
       name: location.name,
       type: location.type,
       dimension: location.dimension,

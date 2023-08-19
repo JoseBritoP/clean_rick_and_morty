@@ -27,3 +27,9 @@ export interface LocationInterface {
   type: string,
   dimension: string,
 }
+
+export type LocationType = {
+  name: string,
+  type: string,
+  dimension: string,
+}

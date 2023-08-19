@@ -1,6 +1,6 @@
 import { Request,Response } from "express";
 // import { ErrorRequestHandler } from "express";
-import { getAllLocations,getLocationById } from "../controllers/locations";
+import { getAllLocations,getLocationById,createLocation } from "../controllers/locations";
 export const getLocations = async (_req:Request,res:Response) => {
   try {
     const locations = await getAllLocations();
@@ -21,9 +21,11 @@ export const getLocation = async (req:Request,res:Response) => {
   }
 };
 
-export const postLocation = (req:Request,res:Response) => {
+export const postLocation = async  (req:Request,res:Response) => {
+  const { name, type, dimension} = req.body;
   try {
-    return res.status(201).json({DIY:'post Location'})
+    const newLocation = await createLocation(name, type, dimension)
+    return res.status(201).json(newLocation)
   } catch (error:any) {
     return res.status(404).json({error: error.message});
   }
