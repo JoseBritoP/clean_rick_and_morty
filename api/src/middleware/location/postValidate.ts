@@ -5,7 +5,7 @@ export const postValidate = async (req:Request,res:Response,next:NextFunction) =
   // console.log(req.body)
   try {
     const result = await validateLocation(req.body);
-    console.log(result)
+    // console.log(result)
     if(!result.success) {
       // console.log(result.error)
       throw new Error (JSON.stringify(result.error))
