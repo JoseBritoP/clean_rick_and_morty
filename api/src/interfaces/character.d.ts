@@ -27,6 +27,7 @@ export type CharacterApiResult = {
 
 export const enum Gender {
   Female = "Female",
+  Genderless = "Genderless",
   Male = "Male",
   Unknown = "unknown",
 }
@@ -38,7 +39,15 @@ export type Location = {
 
 export const enum Species {
   Alien = "Alien",
+  Animal = "Animal",
+  Cronenberg = "Cronenberg",
+  Disease = "Disease",
   Human = "Human",
+  Humanoid = "Humanoid",
+  MythologicalCreature = "Mythological Creature",
+  Poopybutthole = "Poopybutthole",
+  Robot = "Robot",
+  Unknown = "unknown",
 }
 
 export const enum Status {
@@ -55,4 +64,17 @@ export interface CharacterInterface {
   species: Species,
   gender:Gender,
   type:string,
+};
+
+export type CharacterApi = {
+  id:       number;
+  name:     string;
+  status:   Status;
+  species:  Species;
+  type:     string;
+  gender:   Gender;
+  origin:   Location;
+  location: Location;
+  image:    string;
+  episodes: string[];
 };
