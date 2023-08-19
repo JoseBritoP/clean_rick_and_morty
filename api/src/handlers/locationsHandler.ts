@@ -1,8 +1,6 @@
 import { Request,Response } from "express";
 // import { ErrorRequestHandler } from "express";
-import { getAllLocationsApi } from "../controllers/locations/02 - getAllLocationsApi";
-import { getAllLocations } from "../controllers/locations/01 - getAllLocations";
-
+import { getAllLocations,getLocationById } from "../controllers/locations";
 export const getLocations = async (_req:Request,res:Response) => {
   try {
     const locations = await getAllLocations();
@@ -13,10 +11,11 @@ export const getLocations = async (_req:Request,res:Response) => {
   }
 };
 
-export const getLocation = (req:Request,res:Response) => {
+export const getLocation = async (req:Request,res:Response) => {
   const {id} = req.params;
   try {
-    return res.status(200).json({DIY: `get Location by id: ${id}`})
+    const location = await getLocationById(id)
+    return res.status(200).json(location)
   } catch (error:any) {
     return res.status(404).json({error: error.message});
   }
