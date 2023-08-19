@@ -1,4 +1,3 @@
-import { number } from 'zod';
 import { server } from '../index';
 import request from 'supertest';
 import { EpisodeInterface } from '../interfaces/episode';
