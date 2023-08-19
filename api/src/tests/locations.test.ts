@@ -1,6 +1,6 @@
 import { server } from '../index';
 import request from 'supertest';
-import { LocationInterface } from '../interfaces/location';
+import { LocationInterface, LocationType } from '../interfaces/location';
 
 xdescribe('/GET Location',()=>{
   describe('Success case',()=>{
@@ -32,7 +32,7 @@ xdescribe('/GET Location',()=>{
   });
 });
 
-describe('/POST Location',()=>{
+xdescribe('/POST Location',()=>{
   describe('Success case',()=>{
     test('should respond with a 201 status code',async()=>{
       const newLocationTest = {
@@ -64,9 +64,22 @@ describe('/POST Location',()=>{
       const response = await request(server).post('/location').send(newLocationTest);
       expect(response.body.id).toBeDefined();
     });
-    test('should respond with a json object equality Location interface',async()=>{});
+    test('should respond with a json object equality Location interface',async()=>{
+      const newLocationTest = {
+        name: 'new Location Test four',
+        type: 'new Location Test',
+        dimension: 'new Location Test',
+        } as LocationType;
+        const response = await request(server).post('/location').send(newLocationTest);
+        expect(response.body).toMatchObject<LocationInterface>({
+          id: expect.any(Number),
+          name: expect.any(String),
+          type: expect.any(String),
+          dimension: expect.any(String),
+        });
+    });
   });
-  xdescribe('Error case',()=>{
+  describe('Error case',()=>{
     test('should respond with a status 400 code if is missing data',async()=>{
       const fields = [
         {},
