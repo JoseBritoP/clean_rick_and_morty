@@ -1,12 +1,6 @@
 import { server } from '../index';
 import request from 'supertest';
-// import { LocationInterface } from '../interfaces/location';
-export interface LocationInterface {
-  id:number,
-  name:string;
-  type: string,
-  dimension: string,
-}
+import { LocationInterface } from '../interfaces/location';
 
 describe('/GET Location',()=>{
   test('should respond with a 200 status code',async()=>{
