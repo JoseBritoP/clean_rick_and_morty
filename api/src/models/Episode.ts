@@ -19,7 +19,11 @@ export default (sequelize:Sequelize) =>{
     episode:{
       type:DataTypes.STRING(25),
       allowNull:false,
-    }
+    }, 
+    deleted:{
+      type:DataTypes.BOOLEAN,
+      defaultValue:false,
+    },
   },{
     timestamps:false
   });

@@ -16,11 +16,21 @@ export const savingEpisodesBDD = async () => {
 };
 
 export const getAllEpisodes = async () => {
-  const episodes = await Episode.findAll();
+  const episodes = await Episode.findAll({
+    attributes: ["id","name","air_date","episode"],
+    where:{
+      deleted:false
+    }
+  });
 
   if(episodes.length === 0){
     await savingEpisodesBDD();
-    const episodes = await Episode.findAll();
+    const episodes = await Episode.findAll({
+      attributes: ["id","name","air_date","episode"],
+      where:{
+        deleted:false
+      }
+    });
     return episodes;
   };
 

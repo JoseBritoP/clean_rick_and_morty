@@ -16,10 +16,20 @@ export const savingLocationsBDD = async () => {
 };
 
 export const getAllLocations = async () => {
-  const locations = await Location.findAll();
+  const locations = await Location.findAll({
+    attributes:["id","name","type","dimension"],
+    where:{
+      deleted:false,
+    },
+  });
   if(locations.length === 0){
     await savingLocationsBDD();
-    const allLocations = await Location.findAll();
+    const allLocations = await Location.findAll({
+      attributes:["id","name","type","dimension"],
+      where:{
+        deleted:false,
+      },
+    });
     return allLocations;
   }
   return locations;
