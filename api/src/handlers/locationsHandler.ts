@@ -14,7 +14,7 @@ export const getLocations = async (_req:Request,res:Response) => {
 export const getLocation = async (req:Request,res:Response) => {
   const {id} = req.params;
   try {
-    const location = await getLocationById(id)
+    const location = await getLocationById(+id)
     return res.status(200).json(location)
   } catch (error:any) {
     return res.status(404).json({error: error.message});
