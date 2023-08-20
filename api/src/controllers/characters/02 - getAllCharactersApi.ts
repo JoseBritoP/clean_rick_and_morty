@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { CharacterAPI,CharacterApiResult,CharacterInterface } from '../../interfaces/character';
+import { CharacterAPI,CharacterApiResult,CharacterInterface } from '../../types/character';
 import { cleanArrayApi } from '../../helpers/character/cleanArray';
 
 export const getAllCharactersApi = async ():Promise<CharacterInterface[]> => {

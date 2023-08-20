@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { EpisodeAPI,EpisodeInterface,EpisodeApiResult } from '../../interfaces/episode';
+import { EpisodeAPI,EpisodeInterface,EpisodeApiResult } from '../../types/episode';
 import { cleanArrayApi } from '../../helpers/episode/cleanArray';
 export const getAllEpisodesApi = async() => {
   const pages:number[] = [1,2,3];

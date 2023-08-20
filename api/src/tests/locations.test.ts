@@ -1,8 +1,8 @@
 import { server } from '../index';
 import request from 'supertest';
-import { LocationInterface, LocationType } from '../interfaces/location';
+import { LocationInterface, LocationType } from '../types/location';
 
-xdescribe('GET /Location',()=>{
+describe('GET /Location',()=>{
   describe('Success case',()=>{
     test('should respond with a 200 status code',async()=>{
       const response: request.Response = await request(server).get('/location');
@@ -73,7 +73,7 @@ describe('GET /location/:id',()=>{
   });
 });
 
-xdescribe('POST /Location',()=>{
+describe('POST /Location',()=>{
   describe('Success case',()=>{
     test('should respond with a 201 status code',async()=>{
       const newLocationTest = {

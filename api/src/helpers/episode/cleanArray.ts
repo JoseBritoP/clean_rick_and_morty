@@ -1,4 +1,4 @@
-import { EpisodeInterface } from "../../interfaces/episode";
+import { EpisodeInterface } from "../../types/episode";
 
 export const cleanArrayApi = (episodes:any) => {
   return episodes.map((episode:EpisodeInterface)=>({

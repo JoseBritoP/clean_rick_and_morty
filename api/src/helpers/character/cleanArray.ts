@@ -1,4 +1,4 @@
-import { CharacterApi } from "../../interfaces/character";
+import { CharacterApi } from "../../types/character";
 
 export const cleanArrayApi = (characters:any) => {
   return characters.map((character:CharacterApi)=>({

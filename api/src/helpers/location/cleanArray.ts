@@ -1,4 +1,4 @@
-import { LocationInterface } from "../../interfaces/location";
+import { LocationInterface } from "../../types/location";
 export const cleanArrayApi = (locations:any) =>{
   // console.log(locations)
   return locations.map((location:LocationInterface)=>({

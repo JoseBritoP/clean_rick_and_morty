@@ -1,5 +1,5 @@
 import z from 'zod';
-import { LocationType } from '../interfaces/location';
+import { LocationType } from '../types/location';
 
 const locationScheme = z.object({
   name: z.string({

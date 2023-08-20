@@ -1,6 +1,6 @@
 import { server } from '../index';
 import request from 'supertest';
-import { EpisodeInterface } from '../interfaces/episode';
+import { EpisodeInterface } from '../types/episode';
 
 describe('/GET Episode',()=>{
   test('should respond with a 200 status code',async()=>{

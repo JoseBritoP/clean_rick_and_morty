@@ -1,5 +1,5 @@
 import { Location } from "../../db/db";
-import { LocationType,LocationInterface } from "../../interfaces/location";
+import { LocationType,LocationInterface } from "../../types/location";
 
 export const createLocation = async (name:string, type:string, dimension:string) =>{
   const locationFormat:LocationType = {

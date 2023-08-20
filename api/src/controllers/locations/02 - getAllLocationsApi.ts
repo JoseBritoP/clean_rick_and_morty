@@ -1,5 +1,5 @@
 import axios from "axios";
-import { LocationsAPI, LocationApiResult, LocationInterface } from "../../interfaces/location";
+import { LocationsAPI, LocationApiResult, LocationInterface } from "../../types/location";
 import { cleanArrayApi } from "../../helpers/location/cleanArray";
 
 export const getAllLocationsApi = async (): Promise<LocationInterface[]> => {
