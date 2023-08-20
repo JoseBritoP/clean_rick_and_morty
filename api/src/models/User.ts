@@ -13,7 +13,7 @@ export default (sequelize:Sequelize) =>{
       unique:true
     },
     password:{
-      type:DataTypes.STRING(35),
+      type:DataTypes.STRING(100),
       allowNull:false,
     },
   },{
