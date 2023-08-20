@@ -9,9 +9,9 @@ import { userRegister,userLogin } from '../handlers/userAuthHandler';
 //Middlewares:
 
 import { logMiddleware } from '../middleware/user/logMiddleware';
-import { newUser } from '../middleware/user/newUser';
+import { auth } from '../middleware/user/newUser';
 
 // Enrutado
 
-userAuthRouter.post('/register',newUser,userRegister);
-userAuthRouter.post('/login',userLogin);
+userAuthRouter.post('/register',auth,userRegister);
+userAuthRouter.post('/login',auth,userLogin);

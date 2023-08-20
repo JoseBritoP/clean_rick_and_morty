@@ -1,5 +1,7 @@
+export type UserId = `${string}-${string}-${string}-${string}`
+
 export interface User {
-  id: number,
+  id: UserId,
   email:string,
   password: string,
 };
