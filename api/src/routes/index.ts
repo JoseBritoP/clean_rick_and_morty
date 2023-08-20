@@ -10,12 +10,14 @@ export const router = Router();
 import { characterRouter } from './charactersRouter';
 import { locationRouter } from './locationRouter';
 import { episodeRouter } from './episodeRouter';
+import { userAuthRouter } from './userAuthRouter';
 
 // Endpoints
 
 router.use('/character',characterRouter);
 router.use('/episode',episodeRouter);
 router.use('/location',locationRouter);
+router.use('/auth',userAuthRouter)
 
 // Rutas no implementadas:
 router.use((req: Request, res: Response, next: NextFunction) => {

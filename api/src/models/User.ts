@@ -3,9 +3,9 @@ import { Sequelize,DataTypes } from "sequelize";
 export default (sequelize:Sequelize) =>{
   sequelize.define('User',{
     id:{
-      type : DataTypes.INTEGER,
+      type : DataTypes.UUID,
       primaryKey:true,
-      autoIncrement: true,
+      defaultValue: DataTypes.UUIDV4
     },
     email:{
       type:DataTypes.STRING(50),
@@ -16,5 +16,7 @@ export default (sequelize:Sequelize) =>{
       type:DataTypes.STRING(35),
       allowNull:false,
     },
+  },{
+    timestamps:false
   });
 };
