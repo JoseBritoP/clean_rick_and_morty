@@ -1,7 +1,7 @@
 import { Request,Response } from "express";
 // import { ErrorRequestHandler } from "express";
 // import { getAllEpisodesApi } from "../controllers/episodes/02 - getAllEpisodesApi";
-import { getAllEpisodes } from "../controllers/episodes";
+import { getAllEpisodes,getEpisodeById,createEpisode} from "../controllers/episodes";
 
 export const getEpisodes = async (_req:Request,res:Response) => {
   try {
@@ -12,18 +12,22 @@ export const getEpisodes = async (_req:Request,res:Response) => {
   }
 };
 
-export const getEpisode = (req:Request,res:Response) => {
+export const getEpisode = async (req:Request,res:Response) => {
   const {id} = req.params;
   try {
-    return res.status(200).json({DIY: `get episode by id: ${id}`})
+    const episode = await getEpisodeById(+id)
+    return res.status(200).json(episode)
   } catch (error:any) {
     return res.status(404).json({error: error.message});
   }
 };
 
-export const postEpisode = (req:Request,res:Response) => {
+export const postEpisode = async (req:Request,res:Response) => {
+  const {name,air_date,episode} = req.body;
+
   try {
-    return res.status(201).json({DIY:'post episode'})
+    const newEpisode = await createEpisode(name,air_date,episode)
+    return res.status(201).json(newEpisode)
   } catch (error:any) {
     return res.status(404).json({error: error.message});
   }
