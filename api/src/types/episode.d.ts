@@ -26,3 +26,9 @@ export interface EpisodeInterface {
   air_date:string
   episode:string
 };
+
+export type EpisodeType = {
+  name:string
+  air_date:string
+  episode:string
+};
