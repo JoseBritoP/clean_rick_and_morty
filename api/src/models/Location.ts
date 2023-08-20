@@ -19,7 +19,11 @@ export default (sequelize:Sequelize) =>{
     dimension:{
       type:DataTypes.STRING(50),
       allowNull:false,
-    }
+    },
+    deleted:{
+      type:DataTypes.BOOLEAN,
+      defaultValue:false,
+    },
   },{
     timestamps:false,
   });
