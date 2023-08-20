@@ -29,15 +29,15 @@ describe('GET /Episode',()=>{
   })
 });
 
-describe('GET /location/:id',()=>{
+describe('GET /episode/:id',()=>{
   describe('Success case',()=>{
     test('should respond with a 200 status code',async()=>{
-      const response = await request(server).get('/location/1').send();
+      const response = await request(server).get('/episode/1').send();
       expect(response.status).toEqual(200);
       expect(response.ok).toBeTruthy();
     });
     test('should respond with an object with an object',async()=>{
-      const response = await request(server).get('/location/1').send();
+      const response = await request(server).get('/episode/1').send();
       expect(response.body).toBeInstanceOf(Object);
       expect(response.body).toMatchObject<EpisodeInterface>({
         id: expect.any(Number),
@@ -46,8 +46,8 @@ describe('GET /location/:id',()=>{
         episode: expect.any(String),
       });
     });
-    test('should respond with an object instance of Location',async()=>{
-      const response = await request(server).get('/location/1').send();
+    test('should respond with an object instance of episode',async()=>{
+      const response = await request(server).get('/episode/1').send();
       expect(response.body).toBeInstanceOf(Object);
       expect(response.body).toMatchObject<EpisodeInterface>({
         id: expect.any(Number),
@@ -60,12 +60,17 @@ describe('GET /location/:id',()=>{
   describe('Error case',()=>{
     const id = 1000
     test('should respond with a 404 status code', async ()=>{
-      const response = await request(server).get(`/location/${id}`);
+      const response = await request(server).get(`/episode/${id}`);
       expect(response.status).toBe(404);
     });
-    test(`should response with a message error like: 'Don't exist the location id: ${id}`,async()=>{
-      const response = await request(server).get(`/location/${id}`);
-      expect(response.body.error).toBe(`Don't exist the location id: ${id}`);
+    test(`should response with a message error like: 'Don't exist the episode id: ${id}`,async()=>{
+      const response = await request(server).get(`/episode/${id}`).send();
+      expect(response.body.error).toBe(`Don't exist the episode id: ${id}`);
     });
+    test("should respond with a message error like 'The id of episode must be a number'",async()=>{
+      const idInvalidate = "3123asd"
+      const response = await request(server).get(`/episode/${idInvalidate}`).send()
+      expect(response.body.error).toBe(`The id of episode must be a number`)
+    })
   });
 });
