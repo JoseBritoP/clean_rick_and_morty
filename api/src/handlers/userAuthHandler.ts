@@ -18,5 +18,12 @@ export const userRegister = async (req:Request,res:Response) => {
 };
 
 export const userLogin = async (req:Request,res:Response) => {
-  return res.status(201).json({DIY:'The user has successfully login'})
+  const {email,password} = req.body
+  try {
+    const userLogged = await loginUser({email,password})
+    return res.status(200).json({message:'User logged successfully'})
+  } catch (error:any) {
+    return res.status(409).json({error: error.message})
+  }
+  // return res.status(201).json({DIY:'The user has successfully login'})
 };
