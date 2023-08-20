@@ -1,6 +1,6 @@
 import { Request,Response } from "express";
 // import { ErrorRequestHandler } from "express";
-import { getAllLocations,getLocationById,createLocation } from "../controllers/locations";
+import { getAllLocations,getLocationById,createLocation} from "../controllers/locations";
 export const getLocations = async (_req:Request,res:Response) => {
   try {
     const locations = await getAllLocations();
@@ -31,12 +31,15 @@ export const postLocation = async  (req:Request,res:Response) => {
   }
 };
 
-export const updateLocation = (req:Request,res:Response) => {
+export const updateLocation = async (req:Request,res:Response)=> {
   const {id} = req.params;
+  const {name,type,dimension} = req.body
   try {
-    return res.status(200).json({DIY:`Update Location from id ${id}`})
+    // const editedLocation = await patchLocation(+id,name,type,dimension)
+    // res.status(200).json(editedLocation);
+    return res.status(200).json({DIY:`Updated the location by id: ${id} with new ${name}, ${type},${dimension} `})
   } catch (error:any) {
-    return res.status(404).json({error: error.message});
+    res.status(404).json({error: error.message});
   }
 };
 
