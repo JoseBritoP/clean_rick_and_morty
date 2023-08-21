@@ -9,6 +9,6 @@ export const auth = async (req:Request,res:Response,next:NextFunction) => {
     next();
 
   } catch (error:any) {
-    return res.status(409).json({ error: JSON.parse(error.message) });
+    return res.status(400).json({ error: JSON.parse(error.message) });
   }
 };
