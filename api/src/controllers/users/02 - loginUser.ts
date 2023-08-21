@@ -15,7 +15,10 @@ export const loginUser = async ({email,password}:UserType) => {
 
   const data = {
     token,
-    user:checkEmailExist,
+    user:{
+      id: checkEmailExist.id,
+      email :  checkEmailExist.email
+    },
   }
   // return checkEmailExist;
   return data;
