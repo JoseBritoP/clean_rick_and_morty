@@ -10,7 +10,6 @@ export default (sequelize:Sequelize) =>{
     name:{
       type:DataTypes.STRING(60),
       unique:true,
-      defaultValue:'unknown'
     },
     type:{
       type:DataTypes.STRING(50),

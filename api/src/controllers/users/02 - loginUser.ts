@@ -5,7 +5,7 @@ import { genereateToken } from "../../utils/jwt.handler";
 
 export const loginUser = async ({email,password}:UserType) => {
   const checkEmailExist:any = await User.findOne({where:{email}});
-  if(!checkEmailExist) throw Error (`Email invalidate`);
+  if(!checkEmailExist) throw Error (`Email not found`);
 
   const passwordHash = checkEmailExist.password;
   const isCorrect = await passwordCompare(password,passwordHash);
