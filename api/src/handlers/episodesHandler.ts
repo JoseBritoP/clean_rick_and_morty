@@ -1,7 +1,7 @@
 import { Request,Response } from "express";
 // import { ErrorRequestHandler } from "express";
 // import { getAllEpisodesApi } from "../controllers/episodes/02 - getAllEpisodesApi";
-import { getAllEpisodes,getEpisodeById,createEpisode} from "../controllers/episodes";
+import { getAllEpisodes,getEpisodeById,createEpisode,deleteEpisodeById} from "../controllers/episodes";
 
 export const getEpisodes = async (_req:Request,res:Response) => {
   try {
@@ -42,10 +42,12 @@ export const updateEpisode = (req:Request,res:Response) => {
   }
 };
 
-export const deleteEpisode = (req:Request,res:Response) => {
+export const deleteEpisode = async (req:Request,res:Response) => {
   const {id} = req.params;
   try {
-    return res.status(200).json({DIY:`Delete episode id: ${id}`})
+    const deletedEpisode = await deleteEpisodeById(+id)
+    // return res.status(200).json({DIY:`Delete episode id: ${id}`})
+    return res.status(200).json(deletedEpisode);
   } catch (error:any) {
     return res.status(404).json({error: error.message});
   }
