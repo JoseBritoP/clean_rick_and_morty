@@ -239,3 +239,23 @@ describe('POST /episode',()=>{
     });
   });
 });
+
+describe('DELETE /episode',()=>{
+  const id = 1;
+  test('should change the property deleted of Episode to true',async()=>{
+    const response = await request(server).delete(`/episode/${id}`).send()
+    expect(response.status).toBe(200);
+    expect(response.body.episode.deleted).toBe(true)
+  });
+  test('should respond with a message of status episode delete',async()=>{
+    const response = await request(server).delete(`/episode/${id}`);
+    expect(response.status).toBe(200);
+    expect(response.body.message).toBe(`The Episode of id ${id} was successfully deleted`)
+  })
+  test(`should respond with a message of episode deleted like 'Don't exist the episode id: episodeId'`,async()=>{
+    const response = await request(server).get(`/episode/${id}`).send();
+    expect(response.status).toBe(404);
+    expect(response.notFound).toBe(true);
+    expect(response.body.error).toBe(`Don't exist the episode id: ${id}`);
+  })
+})
