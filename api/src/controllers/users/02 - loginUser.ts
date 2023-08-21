@@ -1,6 +1,7 @@
 import { User } from "../../db/db";
 import { UserType } from "../../types/user";
 import { passwordCompare } from "../../utils/bycript.handler";
+import { genereateToken } from "../../utils/jwt.handler";
 
 export const loginUser = async ({email,password}:UserType) => {
   const checkEmailExist:any = await User.findOne({where:{email}});
@@ -9,5 +10,13 @@ export const loginUser = async ({email,password}:UserType) => {
   const passwordHash = checkEmailExist.password;
   const isCorrect = await passwordCompare(password,passwordHash);
   if(!isCorrect) throw Error(`Password incorrect`);
-  return checkEmailExist;
+
+  const token = await genereateToken(checkEmailExist.id)
+
+  const data = {
+    token,
+    user:checkEmailExist,
+  }
+  // return checkEmailExist;
+  return data;
 };
