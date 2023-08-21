@@ -235,3 +235,23 @@ describe('POST /Location',()=>{
     });
   });
 });
+
+describe('DELETE /location',()=>{
+  const id = 1;
+  test('should change the property deleted of location to true',async()=>{
+    const response = await request(server).delete(`/location/${id}`).send()
+    expect(response.status).toBe(200);
+    expect(response.body.location.deleted).toBe(true)
+  });
+  test('should respond with a message of status location delete',async()=>{
+    const response = await request(server).delete(`/location/${id}`);
+    expect(response.status).toBe(200);
+    expect(response.body.message).toBe(`The Location of id ${id} was successfully deleted`)
+  })
+  test(`should respond with a message of location deleted like 'Don't exist the location id: locationId'`,async()=>{
+    const response = await request(server).get(`/location/${id}`).send();
+    expect(response.status).toBe(404);
+    expect(response.notFound).toBe(true);
+    expect(response.body.error).toBe(`Don't exist the location id: ${id}`);
+  })
+})
