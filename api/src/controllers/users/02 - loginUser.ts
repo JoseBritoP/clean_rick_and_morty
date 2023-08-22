@@ -1,25 +1,25 @@
 import { User } from "../../db/db";
-import { UserType } from "../../types/user";
+import { UserTest, UserType, UserModel, UserToken } from "../../types/user";
 import { passwordCompare } from "../../utils/bycript.handler";
-import { genereateToken } from "../../utils/jwt.handler";
+import { generateToken } from "../../utils/jwt.handler";
 
-export const loginUser = async ({email,password}:UserType) => {
-  const checkEmailExist:any = await User.findOne({where:{email}});
-  if(!checkEmailExist) throw Error (`Email not found`);
+export const loginUser = async ({ email, password }: UserType): Promise<UserTest> => {
+  const checkEmailExist = await User.findOne({ where: { email } }) as UserModel | any;
+  if (!checkEmailExist) throw new Error(`Email not found`);
 
   const passwordHash = checkEmailExist.password;
-  const isCorrect = await passwordCompare(password,passwordHash);
-  if(!isCorrect) throw Error(`Password incorrect`);
+  const isCorrect = await passwordCompare(password, passwordHash);
+  if (!isCorrect) throw new Error(`Password incorrect`);
 
-  const token = await genereateToken(checkEmailExist.id)
+  const token = await generateToken(checkEmailExist.id);
 
-  const data = {
+  const data: UserTest = {
     token,
-    user:{
+    user: {
       id: checkEmailExist.id,
-      email :  checkEmailExist.email
+      email: checkEmailExist.email,
     },
-  }
-  // return checkEmailExist;
+  };
+
   return data;
 };
