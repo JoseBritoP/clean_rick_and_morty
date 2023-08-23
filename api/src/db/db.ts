@@ -36,10 +36,10 @@ export const {Character,Episode,Location,User} = sequelize.models
 Character.belongsToMany(User,{through:"UserCharacterFavorite"});
 User.belongsToMany(Character,{through:"UserCharacterFavorite"});
 
-Character.belongsToMany(Episode,{through:"CharacterEpisodes"});
-Episode.belongsToMany(Character,{through:"CharacterEpisodes"});
+// Character.belongsToMany(Episode,{through:"CharacterEpisodes"});
+// Episode.belongsToMany(Character,{through:"CharacterEpisodes"});
 
 // n:1
 
-Location.hasMany(Character);
-Character.belongsTo(Location);
+Location.belongsToMany(Character,{through:"CharacterLocation"});
+Character.belongsToMany(Location,{through:"CharacterLocation"});

@@ -1,10 +1,11 @@
 import { Request,Response } from "express";
 // import { ErrorRequestHandler } from "express";
 import { getAllCharactersApi } from "../controllers/characters/02 - getAllCharactersApi";
+import { getAllCharacters } from "../controllers/characters";
 
 export const getCharacters = async (_req:Request,res:Response) => {
   try {
-    const characters = await getAllCharactersApi()
+    const characters = await getAllCharacters()
     // return res.status(200).json({DIY:'All characters'})
     return res.status(200).json(characters)
   } catch (error:any) {

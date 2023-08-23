@@ -64,6 +64,9 @@ export interface CharacterInterface {
   species: Species,
   gender:Gender,
   type:string,
+  origin: string,
+  location: string,
+  episodes:string[]
 };
 
 export type CharacterApi = {
@@ -76,5 +79,4 @@ export type CharacterApi = {
   origin:   Location;
   location: Location;
   image:    string;
-  episodes: string[];
 };
