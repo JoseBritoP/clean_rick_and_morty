@@ -39,7 +39,5 @@ User.belongsToMany(Character,{through:"UserCharacterFavorite"});
 // Character.belongsToMany(Episode,{through:"CharacterEpisodes"});
 // Episode.belongsToMany(Character,{through:"CharacterEpisodes"});
 
-// n:1
-
 Location.belongsToMany(Character,{through:"CharacterLocation"});
 Character.belongsToMany(Location,{through:"CharacterLocation"});

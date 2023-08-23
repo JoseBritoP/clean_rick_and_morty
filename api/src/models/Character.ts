@@ -1,11 +1,11 @@
-import { Sequelize,DataTypes } from "sequelize";
+import { Sequelize,DataTypes, UUIDV4 } from "sequelize";
 
 export default (sequelize:Sequelize) =>{
   sequelize.define('Character',{
     id:{
-      type:DataTypes.INTEGER,
+      type:DataTypes.UUID,
       primaryKey:true,
-      autoIncrement: true,
+      defaultValue:UUIDV4
     },
     name:{
       type:DataTypes.STRING(155),
@@ -35,5 +35,7 @@ export default (sequelize:Sequelize) =>{
       type:DataTypes.BOOLEAN,
       defaultValue:false,
     },
+  },{
+    timestamps:false
   });
 };
