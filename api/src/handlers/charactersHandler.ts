@@ -1,7 +1,7 @@
 import { Request,Response } from "express";
 // import { ErrorRequestHandler } from "express";
 import { getAllCharactersApi } from "../controllers/characters/02 - getAllCharactersApi";
-import { getAllCharacters } from "../controllers/characters";
+import { getAllCharacters, getCharacterByIdApi,getCharacterByIdBDD } from "../controllers/characters";
 
 export const getCharacters = async (_req:Request,res:Response) => {
   try {
@@ -13,10 +13,12 @@ export const getCharacters = async (_req:Request,res:Response) => {
   }
 };
 
-export const getCharacter = (req:Request,res:Response) => {
-  const {id} = req.params;
+export const getCharacter = async (req:Request,res:Response) => {
+  // const {id} = req.params;
+  const id:any = req.params.id
   try {
-    return res.status(200).json({DIY: `get character by id: ${id}`})
+    const character = isNaN(id) ? await getCharacterByIdBDD(id) : await getCharacterByIdApi(id);
+    return res.status(200).json(character)
   } catch (error:any) {
     return res.status(404).json({error: error.message});
   }
