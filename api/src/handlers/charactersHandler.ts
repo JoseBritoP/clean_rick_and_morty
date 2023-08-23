@@ -1,7 +1,7 @@
 import { Request,Response } from "express";
 // import { ErrorRequestHandler } from "express";
 import { getAllCharactersApi } from "../controllers/characters/02 - getAllCharactersApi";
-import { getAllCharacters, getCharacterByIdApi,getCharacterByIdBDD } from "../controllers/characters";
+import { getAllCharacters, getCharacterByIdApi,getCharacterByIdBDD,createCharacter } from "../controllers/characters";
 
 export const getCharacters = async (_req:Request,res:Response) => {
   try {
@@ -24,9 +24,11 @@ export const getCharacter = async (req:Request,res:Response) => {
   }
 };
 
-export const postCharacter = (req:Request,res:Response) => {
+export const postCharacter = async  (req:Request,res:Response) => {
+  const {name, status, species, type, gender, image,origin,location} = req.body
   try {
-    return res.status(201).json({DIY:'post character'})
+    const newCharacter = await createCharacter(name, status, species, type, gender,origin,location,image)
+    return res.status(201).json(newCharacter)
   } catch (error:any) {
     return res.status(404).json({error: error.message});
   }
