@@ -13,6 +13,19 @@ export const loginUser = async ({ email, password }: UserType): Promise<UserTest
 
   const token = await generateToken(checkEmailExist.id);
 
+  if(!checkEmailExist.active){
+    const data: UserTest = {
+      token,
+      user: {
+        id: checkEmailExist.id,
+        email: checkEmailExist.email,
+        suspend: true
+      },
+    };
+  
+    return data;
+  }
+
   const data: UserTest = {
     token,
     user: {

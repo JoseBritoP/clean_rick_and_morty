@@ -17,7 +17,8 @@ export type UserType = {
 
 export type UserCredentials = {
   id:UserId,
-  email: string
+  email: string,
+  suspend?:boolean
 }
 
 export type UserTest = {

@@ -4,7 +4,7 @@ export const userAuthRouter = Router();
 
 // Handlers:
 
-import { userRegister,userLogin,userBanned } from '../handlers/userAuthHandler';
+import { userRegister,userLogin,userBanned,userSuspended } from '../handlers/userAuthHandler';
 
 //Middlewares:
 
@@ -16,4 +16,5 @@ import { checkBanned } from '../middleware/user/checkBanned';
 
 userAuthRouter.post('/register',auth,userRegister);
 userAuthRouter.post('/login',auth,checkBanned,userLogin);
-userAuthRouter.delete('/banned/:id',userBanned)
+userAuthRouter.delete('/banned/:id',userBanned);
+userAuthRouter.patch('/suspended/:id',userSuspended)

@@ -6,7 +6,7 @@ export const banUser = async (id:number) => {
   const user = await User.findOne({where:{id}}) as UserModel | any;
   if(!user) throw new Error(`User not found`);
 
-  user.active = true;
+  user.active = false;
   user.banned = true;
   await user.save();
 

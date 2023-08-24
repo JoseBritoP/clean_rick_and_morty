@@ -6,6 +6,7 @@ export const checkBanned = async (req:Request,res:Response,next:NextFunction) =>
   try {
     const userId:any = await User.findOne({where:{email}})
     if(userId && userId.banned) throw new Error(`This account was been banned`);
+    next();
   } catch (error:any) {
     return res.status(403).json({error:error.message});
   }
