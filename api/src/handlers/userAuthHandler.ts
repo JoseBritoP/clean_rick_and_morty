@@ -2,7 +2,7 @@ import { Request,Response } from "express";
 
 // Controllers
 
-import { createNewUser,loginUser } from "../controllers/users";
+import { createNewUser,loginUser,banUser } from "../controllers/users";
 
 // Handlers
 
@@ -27,5 +27,15 @@ export const userLogin = async (req:Request,res:Response) => {
     return res.status(200).json(userLogged)
   } catch (error:any) {
     return res.status(400).json({error: error.message})
+  }
+};
+
+export const userBanned = async (req:Request,res:Response) => {
+  const {id} = req.params
+  try {
+    const user = await banUser(+id);
+    return res.status(200).json({message:user});
+  } catch (error:any) {
+    return res.status(400).json({error:error.message})
   }
 };
