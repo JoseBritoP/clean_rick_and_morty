@@ -23,10 +23,10 @@ export const createCharacter = async (name:string,status:string,species:string,t
   return {
     name:newCharacter.name,
     status: newCharacter.status,
-    species :  newCharacter.species ,
-    type :   newCharacter.type    ,
-    gender :      newCharacter.gender       ,
-    image :        newCharacter.image         ,
+    species: newCharacter.species ,
+    type: newCharacter.type    ,
+    gender: newCharacter.gender       ,
+    image: newCharacter.image         ,
     origin: originBDD,
     location: locationBDD,
   }

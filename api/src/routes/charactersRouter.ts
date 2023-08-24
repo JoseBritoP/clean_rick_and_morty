@@ -9,12 +9,13 @@ import { getCharacter,getCharacters,postCharacter,updateCharacter,deleteCharacte
 
 //Middlewares:
 
-// 
+import { postValidate } from '../middleware/character/postValidate';
+import { matchCharacterName } from '../middleware/character/matchName';
 
 // Enrutado
 
 characterRouter.get('/',getCharacters);
 characterRouter.get('/:id',getCharacter);
-characterRouter.post('/',postCharacter);
+characterRouter.post('/',postValidate,matchCharacterName,postCharacter);
 characterRouter.patch('/:id',updateCharacter);
 characterRouter.delete('/:id',deleteCharacter);

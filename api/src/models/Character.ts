@@ -10,6 +10,7 @@ export default (sequelize:Sequelize) =>{
     name:{
       type:DataTypes.STRING(155),
       allowNull : false,
+      unique:true
     },
     image:{
       type:DataTypes.STRING(),
