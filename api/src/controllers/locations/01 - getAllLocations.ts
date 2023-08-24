@@ -21,6 +21,7 @@ export const getAllLocations = async () => {
     where:{
       deleted:false,
     },
+    order:[["id","ASC"]]
   });
   if(locations.length === 0){
     await savingLocationsBDD();
@@ -29,6 +30,7 @@ export const getAllLocations = async () => {
       where:{
         deleted:false,
       },
+      order:[["id","ASC"]]
     });
     return allLocations;
   }

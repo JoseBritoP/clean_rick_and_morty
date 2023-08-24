@@ -80,3 +80,15 @@ export type CharacterApi = {
   location: Location;
   image:    string;
 };
+
+export type CharacterType = {
+  id?: number | string
+  name:     string;
+  status:   Status;
+  species:  Species;
+  type:     string;
+  gender:   Gender;
+  origin:   number;
+  location: number;
+  image:    string;
+}
